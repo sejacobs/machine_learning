@@ -1,4 +1,5 @@
 # an implementation of a grid search for parameter tuning in a classification model
+# excerpted from http://scikit-learn.org/stable/auto_examples/applications/face_recognition.html
 
 ###############################################################################
 # Train a SVM classification model
