@@ -5,10 +5,17 @@ import numpy as np
 import pylab as pl
 from sklearn import datasets
 from sklearn.tree import DecisionTreeRegressor
-
 ################################
 ### ADD EXTRA LIBRARIES HERE ###
 ################################
+
+from sklearn.cross_validation import train_test_split
+from sklearn.grid_search import GridSearchCV
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+from sklearn.decomposition import RandomizedPCA
+from sklearn.svm import SVC
+
 
 
 def load_data():
