@@ -38,12 +38,25 @@ def explore_city_data(city_data):
 
     # Please calculate the following values using the Numpy library
     # Size of data (number of houses)?
+    len(housing_prices)
+    
     # Number of features?
+    len(boston.feature_names) 
+
     # Minimum price?
+    np.amin(housing_prices)
+    
     # Maximum price?
+    np.amax(housing_prices)
+
     # Calculate mean price?
+    np.mean(housing_prices)
+
     # Calculate median price?
+    np.median(housing_prices)
+
     # Calculate standard deviation?
+    np.std(housing_prices)
 
 
 def performance_metric(label, prediction):
