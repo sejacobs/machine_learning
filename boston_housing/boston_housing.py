@@ -3,6 +3,7 @@
 # Load libraries
 import numpy as np
 import pylab as pl
+import matplotlib
 from sklearn import datasets
 from sklearn.tree import DecisionTreeRegressor
 ################################
@@ -63,10 +64,11 @@ def explore_city_data(city_data):
 def performance_metric(label, prediction):
     """Calculate and return the appropriate error performance metric."""
    
-    metric = mean_squared_error(label, prediction)
+    return mean_squared_error(label, prediction)
+
 
     # http://scikit-learn.org/stable/modules/classes.html#sklearn-metrics-metrics
-    pass
+
 
 
 def split_data(city_data):
@@ -88,9 +90,6 @@ def learning_curve(depth, X_train, y_train, X_test, y_test):
     train_err = np.zeros(len(sizes))
     test_err = np.zeros(len(sizes))
 
-    print "Decision Tree with Max Depth: "
-    print depth
-
     for i, s in enumerate(sizes):
 
         # Create and fit the decision tree regressor model
@@ -101,8 +100,7 @@ def learning_curve(depth, X_train, y_train, X_test, y_test):
         train_err[i] = performance_metric(y_train[:s], regressor.predict(X_train[:s]))
         test_err[i] = performance_metric(y_test, regressor.predict(X_test))
 
-
-    # Plot learning curve graph
+        # Plot learning curve graph
     learning_curve_graph(sizes, train_err, test_err)
 
 
@@ -178,9 +176,15 @@ def fit_predict_model(city_data):
     # should be the same as your performance_metric procedure
     # http://scikit-learn.org/stable/modules/generated/sklearn.metrics.make_scorer.html
 
+    
+    
+    
     # 2. Use gridearch to fine tune the Decision Tree Regressor and find the best model
     # http://scikit-learn.org/stable/modules/generated/sklearn.grid_search.GridSearchCV.html#sklearn.grid_search.GridSearchCV
 
+    
+    
+    
     # Fit the learner to the training data
     print "Final Model: "
     print reg.fit(X, y)
@@ -212,7 +216,7 @@ def main():
         learning_curve(max_depth, X_train, y_train, X_test, y_test)
 
     # Model Complexity Graph
-    # model_complexity(X_train, y_train, X_test, y_test)
+    model_complexity(X_train, y_train, X_test, y_test)
 
     # Tune and predict Model
     #fit_predict_model(city_data)
