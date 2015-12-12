@@ -15,6 +15,7 @@ from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.decomposition import RandomizedPCA
 from sklearn.svm import SVC
+from sklearn.metrics import mean_squared_error
 
 
 
@@ -41,7 +42,7 @@ def explore_city_data(city_data):
     len(housing_prices)
     
     # Number of features?
-    len(boston.feature_names) 
+    len(city_data.feature_names) 
 
     # Minimum price?
     np.amin(housing_prices)
@@ -61,10 +62,8 @@ def explore_city_data(city_data):
 
 def performance_metric(label, prediction):
     """Calculate and return the appropriate error performance metric."""
-
-    ###################################
-    ### Step 2. YOUR CODE GOES HERE ###
-    ###################################
+   
+    metric = mean_squared_error(label, prediction)
 
     # http://scikit-learn.org/stable/modules/classes.html#sklearn-metrics-metrics
     pass
@@ -76,9 +75,7 @@ def split_data(city_data):
     # Get the features and labels from the Boston housing data
     X, y = city_data.data, city_data.target
 
-    ###################################
-    ### Step 3. YOUR CODE GOES HERE ###
-    ###################################
+    X_train, X_test, y_train, y_test = train_test_split(city_data.data, city_data.target, test_size=0.3, random_state=1)
 
     return X_train, y_train, X_test, y_test
 
@@ -215,10 +212,10 @@ def main():
         learning_curve(max_depth, X_train, y_train, X_test, y_test)
 
     # Model Complexity Graph
-    model_complexity(X_train, y_train, X_test, y_test)
+    # model_complexity(X_train, y_train, X_test, y_test)
 
     # Tune and predict Model
-    fit_predict_model(city_data)
+    #fit_predict_model(city_data)
 
 
 if __name__ == "__main__":
