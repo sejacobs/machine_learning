@@ -17,6 +17,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.decomposition import RandomizedPCA
 from sklearn.svm import SVC
 from sklearn.metrics import mean_squared_error
+from sklearn.metrics import make_scorer
 
 
 
@@ -89,6 +90,9 @@ def learning_curve(depth, X_train, y_train, X_test, y_test):
     sizes = np.linspace(1, len(X_train), 50)
     train_err = np.zeros(len(sizes))
     test_err = np.zeros(len(sizes))
+
+    print "Decision Tree with Max Depth: "
+    print depth
 
     for i, s in enumerate(sizes):
 
@@ -176,18 +180,22 @@ def fit_predict_model(city_data):
     # should be the same as your performance_metric procedure
     # http://scikit-learn.org/stable/modules/generated/sklearn.metrics.make_scorer.html
 
-    
-    
-    
+    scorer = make_scorer(mean_squared_error, greater_is_better=False)
+        
     # 2. Use gridearch to fine tune the Decision Tree Regressor and find the best model
     # http://scikit-learn.org/stable/modules/generated/sklearn.grid_search.GridSearchCV.html#sklearn.grid_search.GridSearchCV
 
+
+    reg = GridSearchCV(estimator = regressor, param_grid = parameters, scoring = scorer)
     
+    print reg
     
-    
+
+
     # Fit the learner to the training data
     print "Final Model: "
     print reg.fit(X, y)
+    print reg.best_estimator_ 
     
     # Use the model to predict the output of a particular sample
     x = [11.95, 0.00, 18.100, 0, 0.6590, 5.6090, 90.00, 1.385, 24, 680.0, 20.20, 332.09, 12.13]
@@ -219,7 +227,7 @@ def main():
     model_complexity(X_train, y_train, X_test, y_test)
 
     # Tune and predict Model
-    #fit_predict_model(city_data)
+    fit_predict_model(city_data)
 
 
 if __name__ == "__main__":
