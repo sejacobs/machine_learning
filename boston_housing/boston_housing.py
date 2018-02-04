@@ -6,10 +6,6 @@ import pylab as pl
 import matplotlib
 from sklearn import datasets
 from sklearn.tree import DecisionTreeRegressor
-################################
-### ADD EXTRA LIBRARIES HERE ###
-################################
-
 from sklearn.cross_validation import train_test_split
 from sklearn.grid_search import GridSearchCV
 from sklearn.metrics import classification_report
@@ -34,10 +30,6 @@ def explore_city_data(city_data):
     # Get the labels and features from the housing data
     housing_prices = city_data.target
     housing_features = city_data.data
-
-    ###################################
-    ### Step 1. YOUR CODE GOES HERE ###
-    ###################################
 
     # Please calculate the following values using the Numpy library
     # Size of data (number of houses)?
@@ -172,17 +164,12 @@ def fit_predict_model(city_data):
 
     parameters = {'max_depth':(1,2,3,4,5,6,7,8,9,10)}
 
-    ###################################
-    ### Step 4. YOUR CODE GOES HERE ###
-    ###################################
-
-    # 1. Find the best performance metric
-    # should be the same as your performance_metric procedure
+    #Finding the best performance metric
     # http://scikit-learn.org/stable/modules/generated/sklearn.metrics.make_scorer.html
 
     scorer = make_scorer(mean_squared_error, greater_is_better=False)
         
-    # 2. Use gridearch to fine tune the Decision Tree Regressor and find the best model
+    #Using gridsearch to fine tune the Decision Tree Regressor and find the best model
     # http://scikit-learn.org/stable/modules/generated/sklearn.grid_search.GridSearchCV.html#sklearn.grid_search.GridSearchCV
 
 
@@ -205,9 +192,9 @@ def fit_predict_model(city_data):
 
 
 def main():
-    """Analyze the Boston housing data. Evaluate and validate the
+    """Analyzes the Boston housing data. Evaluates and validates the
     performanance of a Decision Tree regressor on the housing data.
-    Fine tune the model to make prediction on unseen data."""
+    Fine tunes the model to make prediction on unseen data."""
 
     # Load data
     city_data = load_data()
